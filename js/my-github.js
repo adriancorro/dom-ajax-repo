@@ -25,7 +25,6 @@ const getNumberRepos = function(repoName) {
     .then(data => data.json())
     .then(function(response) {
       let reposCount = document.querySelector("#repos-count");
-      console.log("holaaa");
       reposCount.innerText = response.public_repos;
       return response;
     });
@@ -34,7 +33,37 @@ const getNumberRepos = function(repoName) {
 let userRep = "adriancorro";
 getRepos(`${userRep}`);
 getNumberRepos(`${userRep}`);
+
+let input = document.createElement("input");
+let btn = document.createElement("button");
+btn.innerText = "enter a Github username";
+btn.setAttribute("id", "btnId");
+let elementrequests = document.querySelector(".mb-5");
+document.querySelector(".my-auto").insertBefore(btn, elementrequests);
+document.querySelector(".my-auto").insertBefore(input, elementrequests);
+
+document.getElementById("btnId").addEventListener(
+  "click",
+  function(event) {
+    // presentar la cuenta de clicks realizados sobre el elemento con id "prueba"
+
+    let reposCount = document.querySelector("#repos-count");
+    reposCount.innerText = "";
+    let myElement = document.querySelector("#repos-list");
+    if (myElement.hasChildNodes()) {
+      while (myElement.childNodes.length >= 0) {
+        myElement.removeChild(myElement.firstChild);
+      }
+    }
+
+    userRep = input.value;
+    getRepos(`${userRep}`);
+    getNumberRepos(`${userRep}`);
+  },
+  false
+);
+
 let myElement = document.querySelector("#repos-list");
 let nuevo_parrafo = document.createElement("p");
-nuevo_parrafo.innerText = `Here is a list of my repos. My user is: ${userRep}`;
+//nuevo_parrafo.innerText = `Here is a list of my repos. My user is: ${userRep}`;
 document.querySelector(".my-auto").insertBefore(nuevo_parrafo, myElement);

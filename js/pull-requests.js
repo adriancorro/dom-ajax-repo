@@ -43,11 +43,8 @@ const getReposAll = function() {
 };
 
 let input = document.createElement("input");
-let btn = document.createElement("button");
-btn.innerText = "This is som text";
 
 let elementrequests = document.querySelector("#pull-requests-list");
-document.querySelector(".my-auto").insertBefore(btn, elementrequests);
 document.querySelector(".my-auto").insertBefore(input, elementrequests);
 
 input.addEventListener("keyup", function(event) {
