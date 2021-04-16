@@ -45,8 +45,6 @@ document.querySelector(".my-auto").insertBefore(input, elementrequests);
 document.getElementById("btnId").addEventListener(
   "click",
   function(event) {
-    // presentar la cuenta de clicks realizados sobre el elemento con id "prueba"
-
     let reposCount = document.querySelector("#repos-count");
     reposCount.innerText = "";
     let myElement = document.querySelector("#repos-list");
@@ -55,10 +53,22 @@ document.getElementById("btnId").addEventListener(
         myElement.removeChild(myElement.firstChild);
       }
     }
+  },
+  false
+);
 
+document.getElementById("btnId").addEventListener(
+  "click",
+  function(event) {
     userRep = input.value;
-    getRepos(`${userRep}`);
-    getNumberRepos(`${userRep}`);
+    if (!userRep) {
+      userRep = "adriancorro";
+      getRepos(`${userRep}`);
+      getNumberRepos(`${userRep}`);
+    } else {
+      getRepos(`${userRep}`);
+      getNumberRepos(`${userRep}`);
+    }
   },
   false
 );
